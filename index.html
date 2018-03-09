@@ -1,0 +1,92 @@
+<!doctype html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" 
+integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="/socket.io/socket.io.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+
+<title> Messaging App </title>
+
+<div class="container">
+
+    <br>
+    <h1 class="mainTitle">Messaging App </h1>
+
+    <hr>
+
+    <div class="container">
+        <div class="textarea">
+            <div class="form-row">
+
+                <div class="col-md-2">
+                    <input id="name" class="form-control formItems" placeholder="Name">
+                </div>
+
+                <div class="col-md-4">
+                    <input id="message" class="form-control formItems" placeholder="Message">
+                </div>
+
+                <div class="col-md-2">
+                    <select id="colour" name="colour" class="form-control formItems">
+                        <option class="black" value="black">Colour</option>
+                        <option class="red" value="red">Red</option>
+                        <option class="green" value="green">Green</option>
+                        <option class="blue" value="blue">Blue</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select id="size" name="size" class="form-control formItems">
+                            <option class="md" disabled selected hidden>Size</option>
+                            <option class="sm" value="sm">Small</option>
+                            <option class="md" value="md">Medium</option>
+                            <option class="lg" value="lg">Large</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <button id="send" class="btn btn-success">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="messages" id="messages">
+
+        <hr>
+
+    </div>
+</div>
+<script>
+    var socket = io()
+    $(() => {
+        $("#send").click(()=>{
+            if ($("#name").val() == null || $("#name").val()=='' || $("#message").val()==null || $("#message").val()==''){
+                alert("Please enter a name and message.");
+            } else {
+                var message = { name: $("#name").val(), message: $("#message").val(), colour: $("#colour").val(), size: $("#size").val()}
+                postMessage(message)
+            }
+        })
+        getMessages()
+    })
+
+    socket.on('message', addMessage)
+
+    function addMessage(message){
+        $("#messages").append(`<p class="${message.colour} ${message.size} messageItem"> ${message.message} </p> <h3 class="messageItem title"> ${message.name} </h3> <hr>`)
+    }
+
+    function getMessages() {
+        $.get('http://localhost:3000/messages', (data) => {
+            data.forEach(addMessage);
+        })
+    }
+
+    function postMessage(message) {
+        $.post('http://localhost:3000/messages', message)
+    }
+</script>

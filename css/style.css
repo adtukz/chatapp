@@ -1,0 +1,96 @@
+body{
+	background-color:#2d3436;
+	color:#dfe6e9;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:300;
+}
+
+.title {
+	font-family: 'Roboto', sans-serif;
+	font-weight:400;
+	font-size:2.2em;
+}
+
+.mainTitle{
+	font-family: 'Roboto', sans-serif;
+	font-size:3em;
+}
+
+button {
+	width:100%;
+}
+
+.btn-success {
+	background-color:#dfe6e9;
+	color:#2d3436;
+	border: 1px solid #2d3436;
+}
+.btn-success:hover {
+	background-color:#fdcb6e;
+	color:#2d3436;
+	border: 1px solid #fdcb6e;
+}
+.btn-success:focus {
+	background-color:#fdcb6e;
+	color:#2d3436;
+	border: 1px solid #fdcb6e;
+	outline: none !important;
+   	box-shadow: none;
+}
+
+
+
+hr {
+	border-top: 1px solid #c6d8df;
+	margin-left: 0;
+  	margin-right: 0;
+}
+
+.messages{
+	display: flex;
+  	flex-direction: column-reverse;
+}
+
+.messageItem{
+	padding-left:15px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+option{
+	background-color:#2d3436;
+	border:0px solid #2d3436;
+	color:#dfe6e9;
+}
+option:active{
+	background-color:#00b894;
+	color:#dfe6e9;
+}
+
+.formItems{
+	background-color:#2d3436;
+	border:1px solid #fdcb6e;
+	color:#dfe6e9;
+}
+
+.red {
+	color: #d63031;
+}
+.black {
+	color: #b2bec3;
+}
+.green {
+	color: #00b894;
+}
+.blue {
+	color: #0984e3;
+}
+.sm {
+	font-size:1.2em;
+}
+.md {
+	font-size:1.4em;
+}
+.lg {
+	font-size:2em;
+}
