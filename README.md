@@ -6,9 +6,8 @@ An instant chat app. Users can instantly send messages to other users in the cha
 
 ### How To Run App.
 
-*Navigate to folder in cmd.
-*type 
+* Navigate to folder in cmd.
+* type 
 ```
 node server.js
 ```
-*
