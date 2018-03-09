@@ -1,3 +1,3 @@
 # Chat App
 
-One Paragraph of project description goes here
+An instant chat app. Users can instantly send messages to other users in the chat room. Customizable colour and size of text. 
