@@ -6,10 +6,10 @@ var http = require('http').Server(app)
 var io = require('socket.io')(http)
 var mongoose = require('mongoose')
 
-//makes the app asynchronis
+//makes the app asynchronis using express
 app.use(express.static(__dirname))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json()) //to parse in the data from the server
+app.use(bodyParser.urlencoded({ extended: false })) 
 
 //mongoose to set up the data that will be entered into the database
 mongoose.Promise = Promise
