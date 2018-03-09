@@ -18,18 +18,22 @@ integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN
 
     <hr>
 
+    <!-- Container to hold the message form. -->
     <div class="container">
         <div class="textarea">
             <div class="form-row">
 
+                <!-- input field for the user to enter their name -->
                 <div class="col-md-2">
                     <input id="name" class="form-control formItems" placeholder="Name">
                 </div>
-
+                
+                <!-- input field for the user to enter their message -->
                 <div class="col-md-4">
                     <input id="message" class="form-control formItems" placeholder="Message">
                 </div>
 
+                <!-- input field for the user to picck a colour for their message  -->
                 <div class="col-md-2">
                     <select id="colour" name="colour" class="form-control formItems">
                         <option class="black" disabled selected hidden>Colour</option>
@@ -39,6 +43,8 @@ integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN
                         <option class="blue" value="blue">Blue</option>
                     </select>
                 </div>
+
+                <!-- input field for the user to pick a size for the text of their message -->
                 <div class="col-md-2">
                     <select id="size" name="size" class="form-control formItems">
                             <option class="md" disabled selected hidden>Size</option>
@@ -48,13 +54,15 @@ integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN
                     </select>
                 </div>
 
+                <!-- Send button for the user to send their message -->
                 <div class="col-md-2">
                     <button id="send" class="btn btn-success">Send Message</button>
                 </div>
             </div>
         </div>
-    </div>
+    </div>     
 
+    <!-- Div to hold all the messages that the user will see -->
     <div class="messages" id="messages">
 
         <hr>
@@ -62,31 +70,45 @@ integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN
     </div>
 </div>
 <script>
+    //Intiiializing socket.io
     var socket = io()
+
+    //the client is constantly checking for if their is new messages, and if the user clicks send
     $(() => {
+        //When the user clicks the send button this function will be triggered, to send the message to the server
         $("#send").click(()=>{
+            //checks the user has entered a name and message, if not posts an alert to the user to do so.
             if ($("#name").val() == null || $("#name").val()=='' || $("#message").val()==null || $("#message").val()==''){
                 alert("Please enter a name and message.");
             } else {
+                //when the user has entered a name and message, we post the message to the server, getting all the attributes of the message from the form.
                 var message = { name: $("#name").val(), message: $("#message").val(), colour: $("#colour").val(), size: $("#size").val()}
                 postMessage(message)
             }
         })
+        //runs the getMessages function
         getMessages()
     })
 
+    //when a message is sent, it is also added to the messages div via the addMessage function
     socket.on('message', addMessage)
 
+    //adds messages to the messages div
     function addMessage(message){
+        //this is the format of the message for the div, adding the styles,message and title. (done so in reverse, this is correct in the css so the messages appear from newest to oldest.)
         $("#messages").append(`<p class="${message.colour} ${message.size} messageItem"> ${message.message} </p> <h3 class="messageItem title"> ${message.name} </h3> <hr>`)
     }
 
+    //Function to retrieve all messages from the server
     function getMessages() {
+        //connects to the server
         $.get('http://localhost:3000/messages', (data) => {
+            // for each message object on the server, we use the add message function to add them to the messages div
             data.forEach(addMessage);
         })
     }
 
+    //sends message to the server
     function postMessage(message) {
         $.post('http://localhost:3000/messages', message)
     }

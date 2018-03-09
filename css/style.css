@@ -1,3 +1,4 @@
+/* body styles*/
 body{
 	background-color:#2d3436;
 	color:#dfe6e9;
@@ -5,21 +6,25 @@ body{
 	font-weight:300;
 }
 
+/* Title styling */
 .title {
 	font-family: 'Roboto', sans-serif;
 	font-weight:400;
 	font-size:2.2em;
 }
 
+/* Main title at top of page.*/
 .mainTitle{
 	font-family: 'Roboto', sans-serif;
 	font-size:3em;
 }
 
+/* Makes the button the full width of the column it is in*/
 button {
 	width:100%;
 }
 
+/* Styling the send button, so it reacts to when it is hovered over and clicked.*/
 .btn-success {
 	background-color:#dfe6e9;
 	color:#2d3436;
@@ -39,40 +44,42 @@ button {
 }
 
 
-
+/* Styling the horizontal rules on the page*/
 hr {
 	border-top: 1px solid #c6d8df;
 	margin-left: 0;
   	margin-right: 0;
 }
 
+/* Reverses the messages so that the user sees the newest messages at the top of the page*/
 .messages{
 	display: flex;
   	flex-direction: column-reverse;
 }
 
+/* Styling the messages, so they are pushed in a little bit*/
 .messageItem{
 	padding-left:15px;
 	padding-bottom: 0px;
 	margin-bottom: 0px;
 }
 
+/* Styling the option's of the form's drop downs*/
 option{
 	background-color:#2d3436;
 	border:0px solid #2d3436;
 	color:#dfe6e9;
 }
-option:active{
-	background-color:#00b894;
-	color:#dfe6e9;
-}
 
+/* Styling the forms different option blocks*/
 .formItems{
 	background-color:#2d3436;
 	border:1px solid #fdcb6e;
 	color:#dfe6e9;
 }
 
+
+/* All the styles the user can choose from*/
 .red {
 	color: #d63031;
 }
