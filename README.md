@@ -7,7 +7,8 @@ An instant chat app. Users can instantly send messages to other users in the cha
 ### How To Run App.
 
 * Navigate to folder in cmd.
-* type 
+* Enter the below line into the cmd terminal.
 ```
 node server.js
 ```
+* Connect to your local host with the port 3000.(i.e localhost:3000)
